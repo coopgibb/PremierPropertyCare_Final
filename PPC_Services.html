@@ -75,6 +75,8 @@
         font-weight: 700;
         z-index: 10;
         text-decoration: none;
+        white-space: nowrap;
+        flex-shrink: 0;
     }
 
     #main-nav .logo .care-span {
@@ -82,9 +84,9 @@
         font-family: 'Montserrat', sans-serif;
         font-weight: 300;
         font-size: 1rem;
-        display: block;
+        display: inline;
         letter-spacing: 2px;
-        margin-top: -5px;
+        margin-left: 5px;
     }
 
     #main-nav ul { list-style: none; display: flex; }
@@ -92,10 +94,11 @@
         color: var(--white);
         text-decoration: none;
         padding: 0.75rem 1rem;
-        margin: 0 0.5rem;
+        margin: 0 0.2rem;
         font-weight: 400;
         position: relative;
         transition: color 0.3s ease;
+        white-space: nowrap;
     }
     #main-nav ul li a::after {
         content: '';
@@ -110,6 +113,7 @@
     }
     #main-nav ul li a:hover { color: var(--gold-accent); }
     #main-nav ul li a:hover::after { width: 60%; }
+    
     .menu-toggle { display: none; }
 
     /* --- Services Hero --- */
@@ -145,7 +149,7 @@
         background: var(--dark-navy);
         padding: 1rem 0;
         position: sticky;
-        top: 80px; /* Adjust based on main nav height */
+        top: 80px;
         z-index: 999;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
@@ -301,6 +305,18 @@
     footer p { font-size: 0.9rem; }
 
     /* --- Responsive Design --- */
+    @media (max-width: 1024px) {
+        #main-nav .nav-container {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        #main-nav .nav-links {
+            margin-top: 1rem;
+            width: 100%;
+            justify-content: center;
+        }
+    }
+
     @media (max-width: 768px) {
         .service-content-wrapper {
             min-height: auto;
@@ -310,7 +326,17 @@
         #main-nav ul.active { display: flex; }
         #main-nav ul li { margin: 1.5rem 0; }
         #main-nav ul li a { font-size: 1.5rem; }
-        .menu-toggle { display: block; position: relative; z-index: 10; cursor: pointer; }
+        
+        /* Mobile Menu Toggle Positioning */
+        .menu-toggle { 
+            display: block; 
+            position: absolute; 
+            right: 20px; 
+            top: 50%; 
+            transform: translateY(-50%); 
+            cursor: pointer; 
+            z-index: 100; 
+        }
         .menu-toggle .bar { display: block; width: 28px; height: 3px; background: var(--white); margin: 5px auto; transition: all 0.3s ease-in-out; }
         .menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
         .menu-toggle.is-active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
@@ -336,14 +362,16 @@
         <ul class="nav-links" id="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="index.html#about">Our Philosophy</a></li>
+            <li><a href="rental-management.html">Rental Management</a></li>
             <li><a href="PPC_Services.html">Services</a></li>
             <li><a href="index.html#contact">Contact</a></li>
         </ul>
-        <div class="menu-toggle" id="mobile-menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
+    </div>
+    <!-- Moved outside nav-container for absolute positioning on edge -->
+    <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
     </div>
 </nav>
 
@@ -357,6 +385,7 @@
 <nav id="services-nav">
     <div class="container">
         <ul>
+            <li><a href="#rental-management">Rental Management</a></li>
             <li><a href="#routine-checks">Routine Checks</a></li>
             <li><a href="#coordination">Contractors</a></li>
             <li><a href="#housekeeping">Housekeeping</a></li>
@@ -367,6 +396,23 @@
 </nav>
 
 <main>
+    <section id="rental-management" class="service-section">
+        <div class="service-content-wrapper fade-in-element">
+            <div class="service-text-content">
+                <h2>Rental Management</h2>
+                <p class="intro">Maximize your investment with our professional rental management. We handle the complexities of short-term and long-term rentals, ensuring a seamless experience for both you and your guests.</p>
+                <hr>
+                <ul>
+                    <li>Strategic pricing and listing optimization.</li>
+                    <li>Professional guest communication and booking management.</li>
+                    <li>Seamless check-in/check-out coordination.</li>
+                    <li>Comprehensive maintenance and cleaning between stays.</li>
+                </ul>
+            </div>
+            <a href="index.html#contact" class="btn">Contact</a>
+        </div>
+    </section>
+
     <section id="routine-checks" class="service-section">
         <div class="service-content-wrapper fade-in-element">
             <div class="service-text-content">
