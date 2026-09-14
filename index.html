@@ -44,7 +44,7 @@
             padding: 0 2rem;
         }
 
-        /* Navigation */
+        /* Navigation - Refined Aesthetic */
         #main-nav {
             background: transparent;
             position: fixed;
@@ -52,15 +52,15 @@
             z-index: 1000;
             top: 0;
             padding: 1.5rem 0;
-            transition: background 0.4s ease-in-out, padding 0.4s ease-in-out;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         #main-nav.scrolled {
             background: rgba(29, 45, 68, 0.95);
             padding: 1rem 0;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
         #main-nav .nav-container {
@@ -79,45 +79,58 @@
             font-weight: 700;
             z-index: 10;
             line-height: 1.2;
+            white-space: nowrap;
+            margin-right: 2rem;
+            letter-spacing: -0.5px;
         }
 
         #main-nav ul {
             list-style: none;
             display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 0.5rem;
         }
 
         #main-nav ul li a {
             color: var(--white);
             text-decoration: none;
-            padding: 0.75rem 1rem;
-            margin: 0 0.5rem;
-            font-weight: 400;
+            padding: 0.6rem 1rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
             position: relative;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            border-radius: 4px;
         }
 
         #main-nav ul li a::after {
             content: '';
             position: absolute;
-            bottom: 5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
+            bottom: 4px;
+            left: 1rem;
+            right: 1rem;
             height: 1px;
             background: var(--gold-accent);
-            transition: width 0.3s ease;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
 
         #main-nav ul li a:hover {
             color: var(--gold-accent);
+            background: rgba(255, 255, 255, 0.05);
         }
 
         #main-nav ul li a:hover::after {
-            width: 60%;
+            transform: scaleX(1);
         }
 
         .menu-toggle {
             display: none;
+            padding: 0.5rem;
+            cursor: pointer;
         }
 
         /* Hero Section */
@@ -303,7 +316,6 @@
             box-shadow: 0 0 0 10px rgba(255,255,255,0.1), 0 0 0 12px var(--gold-accent);
         }
 
-        /* MODIFICATION: Adjusts the vertical crop to show more of the top of the image */
         .team-member.reverse .team-member-image img {
             object-position: center 20%; 
         }
@@ -495,6 +507,10 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 1050px) {
+            #main-nav ul li a { font-size: 0.8rem; padding: 0.5rem 0.6rem; }
+        }
+
         @media (max-width: 992px) {
             #main-nav .logo { font-size: 1.6rem; }
             #hero h1 { font-size: 3rem; }
@@ -521,7 +537,7 @@
             #main-nav ul { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100vh; background: var(--dark-navy); flex-direction: column; justify-content: center; align-items: center; }
             #main-nav ul.active { display: flex; }
             #main-nav ul li { margin: 1.5rem 0; }
-            #main-nav ul li a { font-size: 1.5rem; }
+            #main-nav ul li a { font-size: 1.5rem; padding: 0.75rem 1rem; }
             .menu-toggle { display: block; position: relative; z-index: 10; cursor: pointer; }
             .menu-toggle .bar { display: block; width: 28px; height: 3px; background: var(--white); margin: 5px auto; transition: all 0.3s ease-in-out; }
             .menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
@@ -548,6 +564,7 @@
             <ul class="nav-links" id="nav-links">
                 <li><a href="#hero">Home</a></li>
                 <li><a href="#about">Our Philosophy</a></li>
+                <li><a href="#rental">Rental Management</a></li>
                 <li><a href="PPC_Services.html">Services</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -644,6 +661,13 @@
                             <h3>Transparent Owner Reporting</h3>
                             <p>We believe in clear communication. You’ll get monthly reports and a full breakdown of work and expenses.</p>
                             <a href="PPC_Services.html#reporting" class="btn-secondary">More Info</a>
+                        </div>
+                    </div>
+                    <div class="service-card" style="background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80');">
+                        <div class="service-card-content">
+                            <h3>Rental Management</h3>
+                            <p>Maximize your investment with our professional rental management. We handle bookings, guest communication, and maintenance to ensure a seamless experience.</p>
+                            <a href="PPC_Services.html#rental-management" class="btn-secondary">More Info</a>
                         </div>
                     </div>
                 </div>
