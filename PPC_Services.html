@@ -89,7 +89,7 @@
     #main-nav ul {
         list-style: none;
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: flex-end;
         gap: 0.5rem;
     }
@@ -324,8 +324,22 @@
     footer p { font-size: 0.9rem; }
 
     /* --- Responsive Design --- */
-    @media (max-width: 1050px) {
-        #main-nav ul li a { font-size: 0.8rem; padding: 0.5rem 0.6rem; }
+    @media (max-width: 1300px) {
+        #main-nav .logo { font-size: 1.6rem; margin-right: 1rem; }
+        #main-nav ul { gap: 0.25rem; }
+        #main-nav ul li a { font-size: 0.78rem; padding: 0.5rem 0.45rem; }
+    }
+
+    @media (max-width: 1180px) {
+        #main-nav ul { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100vh; background: var(--dark-navy); flex-direction: column; justify-content: center; align-items: center; }
+        #main-nav ul.active { display: flex; }
+        #main-nav ul li { margin: 1.5rem 0; }
+        #main-nav ul li a { font-size: 1.5rem; padding: 0.75rem 1rem; }
+        .menu-toggle { display: block; position: relative; z-index: 10; cursor: pointer; }
+        .menu-toggle .bar { display: block; width: 28px; height: 3px; background: var(--white); margin: 5px auto; transition: all 0.3s ease-in-out; }
+        .menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
+        .menu-toggle.is-active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .menu-toggle.is-active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
     }
 
     @media (max-width: 992px) {
@@ -372,6 +386,7 @@
             <li><a href="index.html#about">Our Philosophy</a></li>
             <li><a href="PPC_Services.html#rental-management">Rental Management</a></li>
             <li><a href="PPC_Services.html">Services</a></li>
+            <li><a href="vail-valley-guide.html">Vail Valley Guide</a></li>
             <li><a href="index.html#contact">Contact</a></li>
         </ul>
         <div class="menu-toggle" id="mobile-menu">
