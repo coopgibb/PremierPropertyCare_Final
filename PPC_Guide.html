@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Experience Vail Valley | Premier Property Care</title>
+<meta name="description" content="Discover the best of Vail Valley with our local guide to skiing, summer adventures, restaurants, après-ski and hidden gems.">
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap');
+
+    :root {
+        --dark-navy: #1D2D44;
+        --mid-gray: #3E5C76;
+        --light-beige: #F8F7F4;
+        --white: #FFFFFF;
+        --gold-accent: #B8860B;
+        --scroll-behavior: smooth;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: var(--scroll-behavior); }
+    body { font-family: 'Montserrat', sans-serif; line-height: 1.8; color: var(--dark-navy); background-color: var(--white); overflow-x: hidden; }
+    .container { max-width: 1200px; margin: auto; padding: 0 2rem; }
+
+    /* Navigation - Same as Index and Services Pages */
+    #main-nav {
+        background: transparent;
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        top: 0;
+        padding: 1.5rem 0;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #main-nav.scrolled {
+        background: rgba(29, 45, 68, 0.95);
+        padding: 1rem 0;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    #main-nav .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1400px;
+        margin: auto;
+        padding: 0 2rem;
+    }
+
+    #main-nav .logo {
+        font-family: 'Playfair Display', serif;
+        color: var(--white);
+        font-size: 1.8rem;
+        font-weight: 700;
+        z-index: 10;
+        line-height: 1.2;
+        white-space: nowrap;
+        margin-right: 2rem;
+        letter-spacing: -0.5px;
+        text-decoration: none;
+    }
+
+    #main-nav ul {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 0.5rem;
+    }
+
+    #main-nav ul li a {
+        color: var(--white);
+        text-decoration: none;
+        padding: 0.6rem 1rem;
+        font-weight: 500;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        position: relative;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        border-radius: 4px;
+    }
+
+    #main-nav ul li a::after {
+        content: '';
+        position: absolute;
+        bottom: 4px;
+        left: 1rem;
+        right: 1rem;
+        height: 1px;
+        background: var(--gold-accent);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+
+    #main-nav ul li a:hover {
+        color: var(--gold-accent);
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    #main-nav ul li a:hover::after { transform: scaleX(1); }
+
+    .menu-toggle {
+        display: none;
+        padding: 0.5rem;
+        cursor: pointer;
+    }
+
+    /* Sub Navigation */
+    #sub-nav { background: var(--dark-navy); padding: 1rem 0; position: sticky; top: 70px; z-index: 999; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    #sub-nav ul { list-style: none; display: flex; justify-content: center; gap: 2rem; }
+    #sub-nav ul li a { color: rgba(255, 255, 255, 0.8); text-decoration: none; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; padding: 0.5rem 1rem; border-radius: 20px; transition: 0.3s; }
+    #sub-nav ul li a:hover, #sub-nav ul li a.active { background-color: var(--gold-accent); color: var(--white); }
+
+    /* Hero */
+    .page-hero { padding: 180px 2rem 120px; text-align: center; color: var(--white); background-image: linear-gradient(rgba(29, 45, 68, 0.7), rgba(29, 45, 68, 0.7)), url('https://images.unsplash.com/photo-1551582045-6ec9c11d85b7?auto=format&fit=crop&q=80&w=2000'); background-size: cover; background-position: center; }
+    .page-hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 1rem; }
+    .page-hero p { font-size: 1.2rem; max-width: 700px; margin: auto; }
+
+    /* Sections */
+    .content-section { padding: 5rem 2rem; scroll-margin-top: 130px; background-color: var(--white); }
+    .content-section:nth-of-type(even) { background-color: var(--light-beige); }
+    .wrapper { max-width: 900px; margin: auto; text-align: center; }
+    .wrapper > h2 { font-family: 'Playfair Display', serif; font-size: 2.8rem; margin-bottom: 1.5rem; color: var(--dark-navy); }
+    .wrapper p.intro { color: var(--mid-gray); margin: 0 auto 3rem; max-width: 720px; }
+    .content-body { text-align: left; color: var(--mid-gray); }
+    .guide-item { padding: 0 0 2.5rem; margin-bottom: 2.5rem; border-bottom: 1px solid rgba(62, 92, 118, 0.18); }
+    .guide-item:last-child { border-bottom: 0; margin-bottom: 0; }
+    .guide-item h3 { font-family: 'Playfair Display', serif; color: var(--dark-navy); font-size: 1.65rem; line-height: 1.3; margin-bottom: 0.85rem; }
+    .guide-item p { margin-bottom: 0.8rem; }
+    .guide-item p:last-child { margin-bottom: 0; }
+    .guide-item strong { color: var(--dark-navy); }
+    .guide-item a { color: var(--gold-accent); text-underline-offset: 3px; }
+    .location-heading { font-family: 'Playfair Display', serif; color: var(--dark-navy); font-size: 2rem; margin: 3.5rem 0 2rem; padding-bottom: 0.6rem; border-bottom: 2px solid var(--gold-accent); }
+    .location-heading:first-child { margin-top: 0; }
+    .local-tips { margin-top: 4rem; padding: 2.25rem; background: var(--dark-navy); color: rgba(255,255,255,0.85); border-radius: 4px; }
+    .local-tips h3 { font-family: 'Playfair Display', serif; color: var(--white); font-size: 1.8rem; margin-bottom: 1rem; }
+    .local-tips p { margin-bottom: 1rem; }
+    .local-tips p:last-child { margin-bottom: 0; }
+
+    /* Footer */
+    footer { background: var(--dark-navy); color: rgba(255, 255, 255, 0.7); text-align: center; padding: 3rem 0; }
+
+    /* Animations */
+    .fade-in { opacity: 1; transform: none; }
+
+    @media (max-width: 1050px) {
+        #main-nav ul li a { font-size: 0.8rem; padding: 0.5rem 0.6rem; }
+    }
+
+    @media (max-width: 992px) {
+        #main-nav .logo { font-size: 1.6rem; }
+    }
+
+    @media (max-width: 768px) {
+        #main-nav .logo { font-size: 1.4rem; }
+        #main-nav ul { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100vh; background: var(--dark-navy); flex-direction: column; justify-content: center; align-items: center; }
+        #main-nav ul.active { display: flex; }
+        #main-nav ul li { margin: 1.5rem 0; }
+        #main-nav ul li a { font-size: 1.5rem; padding: 0.75rem 1rem; }
+        .menu-toggle { display: block; position: relative; z-index: 10; cursor: pointer; }
+        .menu-toggle .bar { display: block; width: 28px; height: 3px; background: var(--white); margin: 5px auto; transition: all 0.3s ease-in-out; }
+        .menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
+        .menu-toggle.is-active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .menu-toggle.is-active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+        .page-hero { padding: 145px 1.5rem 90px; }
+        .page-hero h1 { font-size: 2.5rem; }
+        #sub-nav { top: 72px; overflow-x: auto; }
+        #sub-nav ul { gap: 0.25rem; min-width: max-content; padding: 0 1rem; }
+        #sub-nav ul li a { font-size: 0.8rem; padding: 0.45rem 0.75rem; }
+        .content-section { padding: 4rem 1.25rem; }
+        .wrapper > h2 { font-size: 2.25rem; }
+        .guide-item h3 { font-size: 1.45rem; }
+        .local-tips { padding: 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+        #main-nav .logo { font-size: 1.2rem; }
+    }
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+    <div class="nav-container">
+        <a href="index.html" class="logo">Premier Property Care</a>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">Our Philosophy</a></li>
+            <li><a href="PPC_Services.html#rental-management">Rental Management</a></li>
+            <li><a href="PPC_Services.html">Services</a></li>
+            <li><a href="vail-valley-guide.html">Vail Valley Guide</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </div>
+</nav>
+
+<header class="page-hero">
+    <h1>Experience Vail Valley</h1>
+    <p>From snow-capped peaks to alpine meadows, discover the best of the Vail Valley with our curated local guide.</p>
+</header>
+
+<nav id="sub-nav">
+    <ul>
+        <li><a href="#winter">Winter</a></li>
+        <li><a href="#summer">Summer</a></li>
+        <li><a href="#dining">Dining</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section id="winter" class="content-section fade-in">
+        <div class="wrapper">
+            <h2>Winter in the Valley</h2>
+            <p class="intro">Experience world-class skiing, snow-covered villages and memorable mountain evenings throughout the Vail Valley.</p>
+            <div class="content-body">
+                <article class="guide-item">
+                    <h3>1. Ski Vail's Back Bowls</h3>
+                    <p>If you're an experienced skier, exploring Vail's legendary Back Bowls should be near the top of the list.</p>
+                    <p><strong>Why we like it:</strong> On the right powder day, few skiing experiences compare. Huge open bowls, long runs and seemingly endless terrain are what made Vail famous. Vail Mountain offers more than 5,000 acres of skiable terrain.</p>
+                    <p><strong>Our tip:</strong> Don't try to see the entire mountain in one day. Pick an area and explore it properly.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>2. Spend a Ski Day at Beaver Creek</h3>
+                    <p>Beaver Creek feels completely different from Vail. The mountain is known for beautifully groomed runs, a quieter atmosphere and terrain spread across Beaver Creek, Bachelor Gulch and Arrowhead.</p>
+                    <p><strong>Why we like it:</strong> It's extremely easy to have a relaxing ski day here. And yes, stick around for Beaver Creek's famous afternoon Cookie Time.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>3. Have Dinner at Beano's Cabin</h3>
+                    <p>This isn't simply dinner—getting there is part of the night. Beano's is an on-mountain cabin above Beaver Creek offering a multicourse dining experience in a secluded alpine setting.</p>
+                    <p><strong>Why we like it:</strong> It feels like you've disappeared into the mountains for the evening. It's expensive, but for a birthday, anniversary or memorable vacation night, it's one of the valley's most distinctive experiences.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>4. Go Snowmobiling</h3>
+                    <p>Book a guided snowmobile tour into the backcountry surrounding the valley. Several local outfitters offer everything from beginner rides to longer backcountry trips.</p>
+                    <p><strong>Why we like it:</strong> You can cover dramatically more terrain than you ever could on skis or snowshoes, and some tours reach huge open meadows and high-elevation viewpoints.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>5. Cross-Country Ski at the Vail Nordic Center</h3>
+                    <p>When the Vail Golf Club gets covered in snow, it becomes a Nordic center with approximately 17 kilometers of groomed classic and skate-skiing trails, plus snowshoe trails.</p>
+                    <p><strong>Why we like it:</strong> It's peaceful, beautiful and an entirely different experience from downhill skiing.</p>
+                    <p><strong>Getting there:</strong> The Nordic Center is east of Vail Village at the Vail Golf Club.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>6. Take a Horse-Drawn Sleigh Ride</h3>
+                    <p>For something completely different, head west of the main resort corridor for a sleigh ride and ranch dinner. 4 Eagle Ranch offers winter evenings beneath the stars followed by dinner at the ranch.</p>
+                    <p><strong>Why we like it:</strong> It feels genuinely Colorado rather than like another resort activity—and it's especially fun for families or a date night.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>7. Ice Skate in Beaver Creek Village</h3>
+                    <p>The rink sits right in the center of Beaver Creek Village, surrounded by restaurants, hotels and the mountain.</p>
+                    <p><strong>Why we like it:</strong> It's especially fun after skiing when the village lights come on. Grab dinner afterward and make an evening out of it.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>8. Snowshoe Through the Forest</h3>
+                    <p>You don't have to ski to get deep into the winter landscape. Snowshoe trails are available around the valley, including approximately 10 kilometers at the Vail Nordic Center.</p>
+                    <p><strong>Why we like it:</strong> Find a trail after fresh snow and the valley becomes almost completely silent.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>9. Walk Through Vail Village at Night</h3>
+                    <p>Some experiences don't need to be complicated. After a snowstorm, walk through Vail Village after dinner when the streets are covered in snow and the lights are on.</p>
+                    <p><strong>Why we like it:</strong> This is when Vail really feels like an alpine village rather than simply a ski resort.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>10. Take a Day Off From Skiing</h3>
+                    <p>One of the most underrated Vail vacation strategies is not skiing every day. Sleep in, get breakfast, walk through Vail or Beaver Creek, book a spa appointment, have a long lunch, ice skate or sit by a fireplace.</p>
+                    <p>Vail has scenic gondolas, spas, shopping, snowshoeing, Nordic skiing and plenty of other winter activities for non-skiers.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="summer" class="content-section fade-in">
+        <div class="wrapper">
+            <h2>Summer Adventures</h2>
+            <p class="intro">Explore alpine lakes, scenic trails, rushing rivers and the long sunny days that make summer in the mountains so special.</p>
+            <div class="content-body">
+                <article class="guide-item">
+                    <h3>1. Drive Up to Piney Lake</h3>
+                    <p><strong>Why we like it:</strong> This is one of our favorite places in the entire valley. Piney Lake sits at roughly 9,350 feet beneath the dramatic peaks of the Gore Range. Once you arrive, you can walk around the lake, rent a canoe or paddleboard, eat at Piney River Ranch or hike toward Upper Piney Falls.</p>
+                    <p><strong>Getting there:</strong> From Vail, take Red Sandstone Road north and follow Forest Service Road 700 approximately 12 miles to Piney River Ranch. Most of the drive is on a rough dirt road, so expect about 45–60 minutes from the beginning of the dirt road. Four-wheel drive normally isn't required, but decent clearance helps. The road is seasonal and generally opens around late June.</p>
+                    <p><strong>Our tip:</strong> Don't rush it. Bring lunch, a sweatshirt and a camera and make this a half-day trip.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>2. Hike the Village to Village Trail</h3>
+                    <p><strong>Why we like it:</strong> Instead of hiking to one viewpoint and turning around, this trail takes you through Beaver Creek, Bachelor Gulch and Arrowhead. You'll move through aspens and forests with frequent mountain views while seeing parts of Beaver Creek most visitors never experience.</p>
+                    <p>The full point-to-point route is approximately 7.2 miles, but you can easily do smaller sections. One of our favorite approaches is to start higher on Beaver Creek Mountain and work toward Bachelor Gulch and Arrowhead. Depending on lift operations, you may be able to incorporate a gondola or chairlift and make much of the hike downhill.</p>
+                    <p><strong>Our tip:</strong> Go in late September when the aspens change. It can be spectacular.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>3. Spend a Day at Piney River Ranch</h3>
+                    <p>Piney Lake is worth visiting on its own, but you can easily turn the trip into an entire day. Canoes and paddleboards are available seasonally, hiking trails leave directly from the lake and the ranch operates during the summer season.</p>
+                    <p><strong>Why we like it:</strong> It feels considerably more remote than it actually is. You can be shopping in Vail Village in the morning and sitting beside a wilderness lake beneath the Gore Range an hour later.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>4. Bike the Vail Pass Recreation Trail</h3>
+                    <p>This is one of the best ways to see a large portion of the valley without spending the whole day in a car. Rent bikes or e-bikes and ride the paved trail between Vail and Vail Pass. For an easier version, arrange transportation uphill and ride primarily downhill back toward Vail.</p>
+                    <p><strong>Why we like it:</strong> You'll ride alongside Gore Creek, through forests and beneath huge mountain faces. It's adventurous without requiring technical mountain-biking experience.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>5. Paddleboard Nottingham Lake</h3>
+                    <p>Not every summer activity needs to take the entire day. Nottingham Lake sits in the middle of Avon and is an easy place to spend a warm afternoon paddleboarding, walking around the lake or relaxing on the grass.</p>
+                    <p><strong>Why we like it:</strong> It's easy, convenient and especially good if you're traveling with kids or want a slower day between bigger adventures.</p>
+                    <p><strong>Getting there:</strong> Head to Harry A. Nottingham Park in Avon. There's parking surrounding the park, only a few minutes from the entrance to Beaver Creek.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>6. Hike to Beaver Lake</h3>
+                    <p>Start in Beaver Creek Village and hike beyond the resort into the mountains toward Beaver Lake.</p>
+                    <p><strong>Why we like it:</strong> The hike starts among hotels, restaurants and ski lifts, but before long you're surrounded by forest and mountain scenery. It's one of the easiest ways to experience genuine Colorado wilderness without driving somewhere remote.</p>
+                    <p><strong>Getting there:</strong> Start from Beaver Creek Village and follow the Beaver Lake Trail uphill past the ski area.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>7. Take the Gondola Up Vail Mountain</h3>
+                    <p>Vail operates scenic gondolas during the summer, giving you an easy way to reach high-alpine terrain without a strenuous climb. Summer operations include sightseeing, hiking, mountain biking and Epic Discovery activities.</p>
+                    <p><strong>Why we like it:</strong> You can have lunch in Vail Village, ride thousands of vertical feet up the mountain and suddenly be surrounded by enormous views of the Gore Range.</p>
+                    <p><strong>Our tip:</strong> Ride up, hike around the mountain and take the gondola back down rather than immediately returning.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>8. Go Whitewater Rafting</h3>
+                    <p>The Eagle River runs straight through the valley, while the nearby Colorado River offers additional options depending on water levels and the time of year.</p>
+                    <p><strong>Why we like it:</strong> Early summer can offer legitimately exciting whitewater, while later-season trips tend to be more relaxed. There are options for families as well as people looking for something more adventurous.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>9. Fly-Fish the Eagle River</h3>
+                    <p>Even if you've never fly-fished before, consider booking a half-day guided trip. Both wade fishing and float trips are available around the Vail Valley.</p>
+                    <p><strong>Why we like it:</strong> It's a completely different way to experience the valley. Once you're standing in the river, the highway and resorts seem surprisingly far away.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>10. Hike Shrine Ridge</h3>
+                    <p>Drive toward the top of Vail Pass and hike Shrine Ridge for huge views without committing to an all-day expedition.</p>
+                    <p><strong>Why we like it:</strong> This is one of the best effort-to-view ratios around Vail. During wildflower season, the hillsides can be covered in color, and from the ridge you'll get expansive views across the surrounding mountain ranges.</p>
+                    <p><strong>Our tip:</strong> Start early. Afternoon thunderstorms are common in the Colorado high country.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>11. Take a Day Trip to Hanging Lake</h3>
+                    <p>Hanging Lake isn't technically in the Vail Valley, but it's close enough that we think it deserves a spot on the list. The trail climbs steeply through Glenwood Canyon to a turquoise lake fed by waterfalls. The approximately 2.8-mile round trip gains roughly 1,200 feet, so don't let the short mileage fool you.</p>
+                    <p><strong>Getting there:</strong> Head west on I-70 toward Glenwood Springs. Timed permits are required year-round, so reserve before going and confirm current pricing and access details.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>12. Explore Vail Village Without a Plan</h3>
+                    <p>Walk along Gore Creek, wander through the pedestrian streets, stop at patios, check out the shops and eventually find somewhere for dinner.</p>
+                    <p><strong>Why we like it:</strong> Vail Village is best enjoyed when you're not rushing anywhere. The European-style pedestrian layout is one of the things that makes Vail different from most Colorado mountain towns.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="dining" class="content-section fade-in">
+        <div class="wrapper">
+            <h2>Dining &amp; Après</h2>
+            <p class="intro">There are excellent restaurants throughout the valley, and some of the best aren't actually in Vail Village.</p>
+            <div class="content-body">
+                <h3 class="location-heading">Vail</h3>
+
+                <article class="guide-item">
+                    <h3>Sweet Basil</h3>
+                    <p><strong>Why we like it:</strong> A Vail institution. Sweet Basil combines creative New American food with one of the best locations in the village, right along Gore Creek. It works particularly well when you want one nicer dinner during your trip.</p>
+                    <p><strong>Where:</strong> 193 Gore Creek Drive in Vail Village.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>Mountain Standard</h3>
+                    <p><strong>Why we like it:</strong> Probably one of our favorite combinations of great food and a relaxed atmosphere. Much of the cooking centers around live-fire and wood-fired techniques, and the creekside location is hard to beat.</p>
+                    <p><strong>Where:</strong> Below Sweet Basil along Gore Creek in Vail Village.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>La Nonna Ristorante</h3>
+                    <p><strong>Why we like it:</strong> Handmade pasta, excellent wine and a warm Italian atmosphere without feeling overly formal. It's especially good for a date night.</p>
+                    <p><strong>Where:</strong> 100 E. Meadow Drive in Vail Village.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>Vendetta's</h3>
+                    <p><strong>Why we like it:</strong> Completely different from Vail's fine-dining restaurants. Come for pizza, drinks and a classic ski-town atmosphere. It's been part of the rhythm of Vail Village for years.</p>
+                    <p><strong>Where:</strong> Bridge Street, just uphill from the Covered Bridge.</p>
+                </article>
+
+                <h3 class="location-heading">Beaver Creek</h3>
+
+                <article class="guide-item">
+                    <h3>Hooked</h3>
+                    <p><strong>Why we like it:</strong> One of our favorite choices when you want seafood or sushi rather than another steak-and-potatoes mountain dinner. It's lively and located directly beside the main Beaver Creek plaza.</p>
+                    <p><strong>Where:</strong> Beaver Creek Village near the ice rink.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>Splendido at the Chateau</h3>
+                    <p><strong>Why we like it:</strong> This is the special-occasion choice. The dining room, mountain setting and polished service make it feel like a true night out.</p>
+                    <p><strong>Where:</strong> The Chateau in Beaver Creek. Complimentary parking, valet and resort transportation make getting there fairly easy.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>Blue Moose Pizza</h3>
+                    <p><strong>Why we like it:</strong> Sometimes you don't need fine dining—you need pizza after skiing. Blue Moose sits right beside the ice rink and is particularly convenient for families.</p>
+                    <p><strong>Where:</strong> Beaver Creek Village.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>Dusty Boot Saloon</h3>
+                    <p><strong>Why we like it:</strong> Burgers, steaks, drinks and a proper après-ski atmosphere. It's relaxed enough to walk into in ski clothes and works well for groups.</p>
+                    <p><strong>Where:</strong> Beaver Creek Village.</p>
+                </article>
+
+                <h3 class="location-heading">Avon</h3>
+
+                <article class="guide-item">
+                    <h3>Fattoria</h3>
+                    <p><strong>Why we like it:</strong> Excellent house-made pasta and mountain-inspired Italian food. This is one of the places we'd send someone who wants a really good dinner without eating inside the resort.</p>
+                    <p><strong>Where:</strong> 48 E. Beaver Creek Boulevard in Avon.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>Vin48</h3>
+                    <p><strong>Why we like it:</strong> A great date-night restaurant with shareable seasonal dishes, a serious wine list and a lively bar.</p>
+                    <p><strong>Where:</strong> Downtown Avon at 48 E. Beaver Creek Boulevard.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>Northside Kitchen</h3>
+                    <p><strong>Why we like it:</strong> One of the valley's most useful restaurants because it's good at almost every time of day. Come early for coffee, breakfast and fresh doughnuts or return later for a full dinner.</p>
+                    <p><strong>Where:</strong> 20 Nottingham Road in Avon.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>Taquería No Se Hagan Bolas</h3>
+                    <p><strong>Why we like it:</strong> Small, casual, inexpensive and exactly the kind of place tourists can easily miss. It's a great stop when you've had enough resort dining and just want good street-style tacos.</p>
+                    <p><strong>Where:</strong> 104 Beaver Creek Place in Avon.</p>
+                </article>
+
+                <h3 class="location-heading">Edwards</h3>
+
+                <article class="guide-item">
+                    <h3>Craftsman Brew Co.</h3>
+                    <p><strong>Why we like it:</strong> Excellent comfort food without being boring—burgers, sandwiches, pizza, craft beer and cocktails. It's where we'd go after hiking, biking or skiing when everyone is hungry.</p>
+                    <p><strong>Where:</strong> Edwards Village Center.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>Hovey &amp; Harrison</h3>
+                    <p><strong>Why we like it:</strong> One of our favorite breakfast and lunch stops. It has more of a neighborhood-café feeling than a resort restaurant, with baked goods and seasonal dishes built around quality ingredients.</p>
+                    <p><strong>Where:</strong> Edwards Village Boulevard.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>Zino Ristorante</h3>
+                    <p><strong>Why we like it:</strong> A longtime Edwards favorite for handmade pasta, Italian dishes and a lively dinner atmosphere.</p>
+                    <p><strong>Where:</strong> Riverwalk in Edwards.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>Juniper</h3>
+                    <p><strong>Why we like it:</strong> If you're staying in Beaver Creek but want to get away from the resort for a nicer dinner, Juniper is an excellent choice. It's refined without feeling overly formal.</p>
+                    <p><strong>Where:</strong> Riverwalk at Edwards along the Eagle River.</p>
+                </article>
+
+                <article class="guide-item">
+                    <h3>The Gashouse</h3>
+                    <p><strong>Why we like it:</strong> The Gashouse feels like an old-school Colorado mountain restaurant. Steak, seafood, elk, bison and other hearty dishes make it a fun choice for visitors looking for something that actually feels like they're eating in the Rockies.</p>
+                    <p><strong>Where:</strong> Along Highway 6 at the main entrance to Edwards.</p>
+                </article>
+
+                <aside class="local-tips">
+                    <h3>A Few Local Tips</h3>
+                    <p>Weather changes quickly in the mountains, especially above 9,000 feet. Bring layers even when the forecast looks perfect. Start longer summer hikes early to avoid afternoon thunderstorms, drink more water than you normally would and give yourself a day to adjust to the altitude.</p>
+                    <p>Most importantly, don't spend your entire trip trying to check things off a list. Some of our favorite Vail Valley days are the ones where you pick one adventure, take your time and see where the day goes.</p>
+                    <p><strong>Seasonal roads, trails, lifts and businesses can change operating schedules throughout the year, so we always recommend checking current conditions before heading out.</strong></p>
+                </aside>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Premier Property Care | Vail, Colorado.</p>
+    </div>
+</footer>
+
+<script>
+    const nav = document.getElementById('main-nav');
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 50) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+    });
+
+    const menuToggle = document.getElementById('mobile-menu');
+    const mainNavLinks = document.getElementById('nav-links');
+    const mainNavLinkItems = document.querySelectorAll('#nav-links a');
+
+    menuToggle.addEventListener('click', () => {
+        menuToggle.classList.toggle('is-active');
+        mainNavLinks.classList.toggle('active');
+    });
+
+    mainNavLinkItems.forEach(link => {
+        link.addEventListener('click', () => {
+            if (mainNavLinks.classList.contains('active')) {
+                menuToggle.classList.remove('is-active');
+                mainNavLinks.classList.remove('active');
+            }
+        });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('is-visible');
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    const sections = document.querySelectorAll('.content-section');
+    const subNavLinks = document.querySelectorAll('#sub-nav a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (window.pageYOffset >= sectionTop - 200) current = section.getAttribute('id');
+        });
+        subNavLinks.forEach(a => {
+            a.classList.remove('active');
+            if (a.getAttribute('href').substring(1) === current) a.classList.add('active');
+        });
+    });
+</script>
+</body>
+</html>
